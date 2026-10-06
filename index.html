@@ -11,11 +11,11 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--bg:#0d1730;--panel:#131f40;--line:#26365f;--text:#f3efe6;--muted:#9fb0d6;--amber:#ffb703;
-  --ok:#3ddc84;--mid:#ffd23f;--slow:#ff8a3d;--jam:#ff3b5c}
+ --ok:#3ddc84;--mid:#ffd23f;--slow:#ff8a3d;--jam:#ff3b5c}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{font-family:Sora,system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.45;
-  display:grid;grid-template-rows:auto 1fr}
+ display:grid;grid-template-rows:auto 1fr}
 :focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
 h1{margin:0;font-size:18px;font-weight:700}
@@ -44,32 +44,32 @@ details summary{cursor:pointer;color:var(--amber);font-weight:600}
 a{color:var(--amber)}
 .leaflet-container{font-family:inherit}
 @media(min-width:860px){
-  main{grid-template-columns:400px 1fr;grid-template-rows:1fr}
-  .sheet{order:-1;max-height:none;border-top:0;border-right:1px solid var(--line);padding:16px}
+ main{grid-template-columns:400px 1fr;grid-template-rows:1fr}
+ .sheet{order:-1;max-height:none;border-top:0;border-right:1px solid var(--line);padding:16px}
 }
 </style>
 </head>
 <body>
 <header>
-  <h1>Trânsito agora</h1>
-  <nav class="tabs" role="tablist" aria-label="Cidade" id="tabs"></nav>
+ <h1>Trânsito agora</h1>
+ <nav class="tabs" role="tablist" aria-label="Cidade" id="tabs"></nav>
 </header>
 <main>
-  <div id="map" aria-label="Mapa do trânsito em tempo real"></div>
-  <section class="sheet" aria-live="polite">
-    <div id="notice"></div>
-    <p class="lead" id="lead">A carregar…</p>
-    <p class="meta" id="meta"></p>
-    <div class="scale"><span>Parado</span><i></i><span>Fluido</span></div>
-    <div id="seg" hidden></div>
-    <ul class="rank" id="rank"></ul>
-    <details>
-      <summary>Como funciona</summary>
-      <p>As cores do mapa mostram a velocidade atual em cada estrada em comparação com a velocidade em trânsito livre. Toque numa estrada para ver a velocidade, o atraso e o troço medido.</p>
-      <p>A lista mede alguns eixos principais. Cada ponto liga-se à estrada mais próxima, por isso a posição é aproximada. O mapa atualiza de 2 em 2 minutos e a lista de 5 em 5.</p>
-      <p>Dados de trânsito © <a href="https://www.tomtom.com/">TomTom</a>. Mapa © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>.</p>
-    </details>
-  </section>
+ <div id="map" aria-label="Mapa do trânsito em tempo real"></div>
+ <section class="sheet" aria-live="polite">
+   <div id="notice"></div>
+   <p class="lead" id="lead">A carregar…</p>
+   <p class="meta" id="meta"></p>
+   <div class="scale"><span>Parado</span><i></i><span>Fluido</span></div>
+   <div id="seg" hidden></div>
+   <ul class="rank" id="rank"></ul>
+   <details>
+     <summary>Como funciona</summary>
+     <p>As cores do mapa mostram a velocidade atual em cada estrada em comparação com a velocidade em trânsito livre. Toque numa estrada para ver a velocidade, o atraso e o troço medido.</p>
+     <p>A lista mede alguns eixos principais. Cada ponto liga-se à estrada mais próxima, por isso a posição é aproximada. O mapa atualiza de 2 em 2 minutos e a lista de 5 em 5.</p>
+     <p>Dados de trânsito e mapa © <a href="https://www.tomtom.com/">TomTom</a>. Dados de mapa © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
+   </details>
+ </section>
 </main>
 
 <script src="config.js"></script>
@@ -77,21 +77,21 @@ a{color:var(--amber)}
 <script>
 const KEY=(window.TT_KEY||'').trim();
 const CITIES=[
-  {id:'lisboa',name:'Lisboa',lat:38.7330,lon:-9.1500,zoom:12,points:[
-    {name:'Ponte 25 de Abril',lat:38.6915,lon:-9.1770},
-    {name:'Av. 24 de Julho',lat:38.7035,lon:-9.1590},
-    {name:'Av. da Liberdade',lat:38.7190,lon:-9.1450},
-    {name:'Marquês de Pombal',lat:38.7253,lon:-9.1500},
-    {name:'Praça de Espanha',lat:38.7375,lon:-9.1580},
-    {name:'Entrecampos',lat:38.7450,lon:-9.1490},
-    {name:'Campo Grande',lat:38.7600,lon:-9.1560}]},
-  {id:'porto',name:'Porto',lat:41.1500,lon:-8.6150,zoom:12,points:[
-    {name:'Ponte da Arrábida',lat:41.1475,lon:-8.6560},
-    {name:'Ponte Luís I',lat:41.1400,lon:-8.6094},
-    {name:'Av. dos Aliados',lat:41.1470,lon:-8.6110},
-    {name:'Marquês de Pombal',lat:41.1485,lon:-8.6020},
-    {name:'Rotunda da Boavista',lat:41.1580,lon:-8.6290},
-    {name:'Estádio do Dragão',lat:41.1618,lon:-8.5834}]}
+ {id:'lisboa',name:'Lisboa',lat:38.7330,lon:-9.1500,zoom:12,points:[
+   {name:'Ponte 25 de Abril',lat:38.6915,lon:-9.1770},
+   {name:'Av. 24 de Julho',lat:38.7035,lon:-9.1590},
+   {name:'Av. da Liberdade',lat:38.7190,lon:-9.1450},
+   {name:'Marquês de Pombal',lat:38.7253,lon:-9.1500},
+   {name:'Praça de Espanha',lat:38.7375,lon:-9.1580},
+   {name:'Entrecampos',lat:38.7450,lon:-9.1490},
+   {name:'Campo Grande',lat:38.7600,lon:-9.1560}]},
+ {id:'porto',name:'Porto',lat:41.1500,lon:-8.6150,zoom:12,points:[
+   {name:'Ponte da Arrábida',lat:41.1475,lon:-8.6560},
+   {name:'Ponte Luís I',lat:41.1400,lon:-8.6094},
+   {name:'Av. dos Aliados',lat:41.1470,lon:-8.6110},
+   {name:'Marquês de Pombal',lat:41.1485,lon:-8.6020},
+   {name:'Rotunda da Boavista',lat:41.1580,lon:-8.6290},
+   {name:'Estádio do Dragão',lat:41.1618,lon:-8.5834}]}
 ];
 const $=id=>document.getElementById(id);
 const flowUrl=(lat,lon,z)=>`https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/${z}/json?key=${KEY}&point=${lat},${lon}`;
@@ -102,85 +102,93 @@ const fmtMin=s=>{const m=Math.round(s/60);return m<1?'< 1 min':`${m} min`};
 let map,flow,city,segLayer=L.layerGroup(),tileErrors=0,timers=[],loadId=0;
 
 function errMsg(status){
-  if(status===403)return 'A chave da TomTom não tem permissão para este site. Verifique as restrições de domínio no painel da TomTom.';
-  if(status===429)return 'Foi atingido o limite de pedidos da chave TomTom. Tente mais tarde.';
-  if(status===400)return 'Não há dados de trânsito neste ponto.';
-  return `Erro ao obter dados (${status}).`;
+ if(status===401)return 'A chave da TomTom é inválida ou está em falta. Confirme que o segredo TOMTOM_KEY contém a chave de API (e não o App ID).';
+ if(status===403)return 'A chave da TomTom não tem permissão para este site. Verifique as restrições de domínio no painel da TomTom.';
+ if(status===429)return 'Foi atingido o limite de pedidos da chave TomTom. Tente mais tarde.';
+ if(status===400)return 'Não há dados de trânsito neste ponto.';
+ return `Erro ao obter dados (${status}).`;
 }
 async function fetchFlow(lat,lon,z){
-  const r=await fetch(flowUrl(lat,lon,z));
-  if(!r.ok)throw Object.assign(new Error(errMsg(r.status)),{status:r.status});
-  const j=await r.json();return j.flowSegmentData;
+ const r=await fetch(flowUrl(lat,lon,z));
+ if(!r.ok)throw Object.assign(new Error(errMsg(r.status)),{status:r.status});
+ const j=await r.json();return j.flowSegmentData;
 }
 
 async function refreshRanking(){
-  const my=++loadId,c=city;
-  const res=await Promise.allSettled(c.points.map(p=>fetchFlow(p.lat,p.lon,12)));
-  if(my!==loadId)return;
-  const rows=[];let failed=null;
-  res.forEach((r,i)=>{
-    if(r.status==='fulfilled'&&r.value&&r.value.freeFlowSpeed>0){
-      const v=r.value;rows.push({name:c.points[i].name,cur:v.currentSpeed,free:v.freeFlowSpeed,ratio:Math.min(1,v.currentSpeed/v.freeFlowSpeed)});
-    }else if(r.status==='rejected')failed=r.reason;
-  });
-  if(!rows.length){
-    $('lead').textContent='Sem dados de trânsito.';
-    $('meta').textContent=failed?failed.message:'Sem resposta da TomTom.';return}
-  rows.sort((a,b)=>a.ratio-b.ratio);
-  const avg=rows.reduce((s,r)=>s+r.ratio,0)/rows.length;
-  $('lead').innerHTML=`Nos eixos principais circula-se a <b style="color:${color(avg)}">${Math.round(avg*100)} %</b> da velocidade livre.`;
-  $('meta').textContent=`${c.name} · atualizado às ${hhmm(new Date())} · ${rows.length} pontos medidos`;
-  $('rank').innerHTML=rows.map(r=>`<li><div class="row"><span>${r.name}</span><span>${Math.round(r.cur)} de ${Math.round(r.free)} km/h</span></div>
-    <div class="bar"><b style="width:${Math.round(r.ratio*100)}%;background:${color(r.ratio)}"></b></div></li>`).join('');
+ const my=++loadId,c=city;
+ const res=await Promise.allSettled(c.points.map(p=>fetchFlow(p.lat,p.lon,12)));
+ if(my!==loadId)return;
+ const rows=[];let failed=null;
+ res.forEach((r,i)=>{
+   if(r.status==='fulfilled'&&r.value&&r.value.freeFlowSpeed>0){
+     const v=r.value;rows.push({name:c.points[i].name,cur:v.currentSpeed,free:v.freeFlowSpeed,ratio:Math.min(1,v.currentSpeed/v.freeFlowSpeed)});
+   }else if(r.status==='rejected')failed=r.reason;
+ });
+ if(!rows.length){
+   $('lead').textContent='Sem dados de trânsito.';
+   $('meta').textContent=failed?failed.message:'Sem resposta da TomTom.';return}
+ rows.sort((a,b)=>a.ratio-b.ratio);
+ const avg=rows.reduce((s,r)=>s+r.ratio,0)/rows.length;
+ $('lead').innerHTML=`Nos eixos principais circula-se a <b style="color:${color(avg)}">${Math.round(avg*100)} %</b> da velocidade livre.`;
+ $('meta').textContent=`${c.name} · atualizado às ${hhmm(new Date())} · ${rows.length} pontos medidos`;
+ $('rank').innerHTML=rows.map(r=>`<li><div class="row"><span>${r.name}</span><span>${Math.round(r.cur)} de ${Math.round(r.free)} km/h</span></div>
+   <div class="bar"><b style="width:${Math.round(r.ratio*100)}%;background:${color(r.ratio)}"></b></div></li>`).join('');
 }
 
 async function onMapClick(e){
-  const box=$('seg');box.hidden=false;box.innerHTML='A medir esta estrada…';segLayer.clearLayers();
-  try{
-    const z=Math.max(10,Math.min(18,Math.round(map.getZoom())));
-    const f=await fetchFlow(e.latlng.lat,e.latlng.lng,z);
-    const pts=(f.coordinates&&(f.coordinates.coordinate||f.coordinates)||[]).map(p=>[p.latitude,p.longitude]);
-    if(pts.length)L.polyline(pts,{color:'#fff',weight:6,opacity:.9,interactive:false}).addTo(segLayer);
-    const ratio=Math.min(1,f.currentSpeed/f.freeFlowSpeed),delay=f.currentTravelTime-f.freeFlowTravelTime;
-    box.innerHTML=`<h2>${Math.round(f.currentSpeed)} km/h <span style="color:${color(ratio)}">(${Math.round(ratio*100)} % do normal)</span></h2>
-      <div>Em trânsito livre: ${Math.round(f.freeFlowSpeed)} km/h</div>
-      <div>${delay>30?`Atraso neste troço: ${fmtMin(delay)}`:'Sem atraso relevante neste troço'}</div>
-      ${f.roadClosure?'<div style="color:var(--jam);font-weight:600">Estrada cortada</div>':''}
-      <div class="meta" style="margin:4px 0 0">Fiabilidade da medição: ${Math.round((f.confidence??0)*100)} %</div>`;
-  }catch(err){box.textContent=err.message}
+ const box=$('seg');box.hidden=false;box.innerHTML='A medir esta estrada…';segLayer.clearLayers();
+ try{
+   const z=Math.max(10,Math.min(18,Math.round(map.getZoom())));
+   const f=await fetchFlow(e.latlng.lat,e.latlng.lng,z);
+   const pts=(f.coordinates&&(f.coordinates.coordinate||f.coordinates)||[]).map(p=>[p.latitude,p.longitude]);
+   if(pts.length)L.polyline(pts,{color:'#fff',weight:6,opacity:.9,interactive:false}).addTo(segLayer);
+   const ratio=Math.min(1,f.currentSpeed/f.freeFlowSpeed),delay=f.currentTravelTime-f.freeFlowTravelTime;
+   box.innerHTML=`<h2>${Math.round(f.currentSpeed)} km/h <span style="color:${color(ratio)}">(${Math.round(ratio*100)} % do normal)</span></h2>
+     <div>Em trânsito livre: ${Math.round(f.freeFlowSpeed)} km/h</div>
+     <div>${delay>30?`Atraso neste troço: ${fmtMin(delay)}`:'Sem atraso relevante neste troço'}</div>
+     ${f.roadClosure?'<div style="color:var(--jam);font-weight:600">Estrada cortada</div>':''}
+     <div class="meta" style="margin:4px 0 0">Fiabilidade da medição: ${Math.round((f.confidence??0)*100)} %</div>`;
+ }catch(err){box.textContent=err.message}
 }
 
 function loadCity(id){
-  city=CITIES.find(c=>c.id===id)||CITIES[0];
-  history.replaceState(null,'','#'+city.id);
-  [...$('tabs').children].forEach(b=>b.setAttribute('aria-selected',b.dataset.id===city.id));
-  segLayer.clearLayers();$('seg').hidden=true;$('rank').innerHTML='';
-  map.setView([city.lat,city.lon],city.zoom);
-  $('lead').textContent='A carregar…';$('meta').textContent='';
-  if(KEY)refreshRanking();
+ city=CITIES.find(c=>c.id===id)||CITIES[0];
+ history.replaceState(null,'','#'+city.id);
+ [...$('tabs').children].forEach(b=>b.setAttribute('aria-selected',b.dataset.id===city.id));
+ segLayer.clearLayers();$('seg').hidden=true;$('rank').innerHTML='';
+ map.setView([city.lat,city.lon],city.zoom);
+ $('lead').textContent='A carregar…';$('meta').textContent='';
+ if(KEY)refreshRanking();
 }
 
 // ---------- init ----------
 map=L.map('map',{minZoom:9,maxZoom:18}).setView([38.73,-9.15],12);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-  {subdomains:'abcd',maxZoom:19,attribution:'© OpenStreetMap © CARTO · Trânsito © TomTom'}).addTo(map);
+
+// Mapa base: escuro da TomTom (usa a mesma chave); sem chave, OpenStreetMap
+const base = KEY
+  ? L.tileLayer(`https://api.tomtom.com/map/1/tile/basic/night/{z}/{x}/{y}.png?key=${KEY}`,
+      {maxZoom:18, attribution:'© TomTom © OpenStreetMap'})
+  : L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {maxZoom:19, attribution:'© OpenStreetMap'});
+base.addTo(map);
+
 segLayer.addTo(map);
 $('tabs').innerHTML=CITIES.map(c=>`<button role="tab" data-id="${c.id}" aria-selected="false">${c.name}</button>`).join('');
 $('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)loadCity(b.dataset.id)});
 
 if(!KEY){
-  $('lead').textContent='Falta a chave da TomTom.';
-  $('notice').innerHTML=`<div class="notice"><b>Sem chave, não há dados de trânsito reais.</b><br>
-    Crie uma chave gratuita em <a href="https://developer.tomtom.com">developer.tomtom.com</a> e cole-a em <code>config.js</code>:
-    <code>window.TT_KEY = "a-sua-chave";</code></div>`;
+ $('lead').textContent='Falta a chave da TomTom.';
+ $('notice').innerHTML=`<div class="notice"><b>Sem chave, não há dados de trânsito reais.</b><br>
+   Crie uma chave gratuita em <a href="https://developer.tomtom.com">developer.tomtom.com</a> e cole-a em <code>config.js</code>:
+   <code>window.TT_KEY = "a-sua-chave";</code></div>`;
 }else{
-  flow=L.tileLayer(`https://api.tomtom.com/traffic/map/4/tile/flow/relative0-dark/{z}/{x}/{y}.png?key=${KEY}`,
-    {maxZoom:18,opacity:.95}).addTo(map);
-  flow.on('tileerror',()=>{if(++tileErrors===3)$('notice').innerHTML='<div class="notice">Não foi possível carregar as cores do trânsito. Verifique a chave da TomTom e as restrições de domínio.</div>'});
-  map.on('click',onMapClick);
-  setInterval(()=>{if(!document.hidden)flow.redraw()},120000);
-  setInterval(()=>{if(!document.hidden)refreshRanking()},300000);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden){flow.redraw();refreshRanking()}});
+ flow=L.tileLayer(`https://api.tomtom.com/traffic/map/4/tile/flow/relative0-dark/{z}/{x}/{y}.png?key=${KEY}`,
+   {maxZoom:18,opacity:.95}).addTo(map);
+ flow.on('tileerror',()=>{if(++tileErrors===3)$('notice').innerHTML='<div class="notice">Não foi possível carregar as cores do trânsito. Verifique a chave da TomTom e as restrições de domínio.</div>'});
+ map.on('click',onMapClick);
+ setInterval(()=>{if(!document.hidden)flow.redraw()},120000);
+ setInterval(()=>{if(!document.hidden)refreshRanking()},300000);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden){flow.redraw();refreshRanking()}});
 }
 const h=location.hash.slice(1);
 loadCity(CITIES.some(c=>c.id===h)?h:'lisboa');
